@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "patients",
+  "info": {
+    "singularName": "patient",
+    "pluralName": "patients",
+    "displayName": "Patient",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "first_name": {
+      "type": "string",
+      "required": true
+    },
+    "last_name": {
+      "type": "string",
+      "required": true
+    },
+    "father_name": {
+      "type": "string",
+      "required": true
+    },
+    "id_code": {
+      "type": "string",
+      "required": true
+    },
+    "birthday": {
+      "type": "date"
+    },
+    "phone_number": {
+      "type": "string",
+      "required": true
+    },
+    "occupation": {
+      "type": "string",
+      "required": true
+    },
+    "education": {
+      "type": "string",
+      "required": true
+    },
+    "landline": {
+      "type": "string"
+    },
+    "acquaintance": {
+      "type": "string"
+    },
+    "insurance": {
+      "type": "string"
+    },
+    "insurance_id": {
+      "type": "string"
+    },
+    "introduced_by": {
+      "type": "string"
+    },
+    "medical_history": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::medical-history.medical-history",
+      "mappedBy": "patient"
+    }
+  }
+}

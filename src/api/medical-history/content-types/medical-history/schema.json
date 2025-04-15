@@ -1,0 +1,101 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medical_histories",
+  "info": {
+    "singularName": "medical-history",
+    "pluralName": "medical-histories",
+    "displayName": "MedicalHistory",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "sex": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "heart_disease": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "blood_disease": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "hyperthyroidism": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "blood_pressure": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "lung_disease": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "neurological_disease": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "hepatitis": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "kidney_disease": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "diabetes": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "aids": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "tuberculosis": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "pregnancy": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "breastfeeding": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "drug_allergy": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "additional_description": {
+      "type": "blocks"
+    },
+    "patient": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::patient.patient",
+      "inversedBy": "medical_history"
+    }
+  }
+}

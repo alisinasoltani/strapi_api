@@ -369,6 +369,125 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMedicalHistoryMedicalHistory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'medical_histories';
+  info: {
+    description: '';
+    displayName: 'MedicalHistory';
+    pluralName: 'medical-histories';
+    singularName: 'medical-history';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    additional_description: Schema.Attribute.Blocks;
+    aids: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    blood_disease: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    blood_pressure: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    breastfeeding: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    diabetes: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    drug_allergy: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    heart_disease: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    hepatitis: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    hyperthyroidism: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    kidney_disease: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::medical-history.medical-history'
+    > &
+      Schema.Attribute.Private;
+    lung_disease: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    neurological_disease: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    patient: Schema.Attribute.Relation<'oneToOne', 'api::patient.patient'>;
+    pregnancy: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    publishedAt: Schema.Attribute.DateTime;
+    sex: Schema.Attribute.Enumeration<['male', 'female']>;
+    tuberculosis: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
+  collectionName: 'patients';
+  info: {
+    description: '';
+    displayName: 'Patient';
+    pluralName: 'patients';
+    singularName: 'patient';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    acquaintance: Schema.Attribute.String;
+    birthday: Schema.Attribute.Date;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    education: Schema.Attribute.String & Schema.Attribute.Required;
+    father_name: Schema.Attribute.String & Schema.Attribute.Required;
+    first_name: Schema.Attribute.String & Schema.Attribute.Required;
+    id_code: Schema.Attribute.String & Schema.Attribute.Required;
+    insurance: Schema.Attribute.String;
+    insurance_id: Schema.Attribute.String;
+    introduced_by: Schema.Attribute.String;
+    landline: Schema.Attribute.String;
+    last_name: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::patient.patient'
+    > &
+      Schema.Attribute.Private;
+    medical_history: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::medical-history.medical-history'
+    >;
+    occupation: Schema.Attribute.String & Schema.Attribute.Required;
+    phone_number: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -878,6 +997,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::medical-history.medical-history': ApiMedicalHistoryMedicalHistory;
+      'api::patient.patient': ApiPatientPatient;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
